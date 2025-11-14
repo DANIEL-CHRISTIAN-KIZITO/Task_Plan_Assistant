@@ -3,8 +3,10 @@ import '../models/task.dart';
 import '../services/task_database.dart';
 
 class AddTaskScreen extends StatefulWidget {
+  const AddTaskScreen({super.key});
+
   @override
-  _AddTaskScreenState createState() => _AddTaskScreenState();
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
 }
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
@@ -18,7 +20,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       note: _noteController.text,
     );
     await TaskDatabase.instance.insert(task);
-    Navigator.pop(context);
+  if (mounted) { // <--- ADD THIS CHECK
+  Navigator.pop(context);
+    }
+  
   }
 
   @override
